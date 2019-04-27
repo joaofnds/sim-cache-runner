@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	lineRegexp = regexp.MustCompile(`(il1|il2|dl1|dl2)\.(\w+)\s+([\d\.]+)\s`)
+	lineRegexp = regexp.MustCompile(`(il1|il2|dl1|dl2|ul1|ul2)\.(\w+)\s+([\d\.]+)\s`)
 )
 
 type BenchResults struct {
@@ -66,6 +66,13 @@ func parseResults(results string) []*BenchResults {
 		case dl1:
 			dl1Results.setFieldValue(field, value)
 		case dl2:
+			dl2Results.setFieldValue(field, value)
+
+		// sim-cache unified caches points instructions to the data cache, so
+		// results end up in the data cache
+		case ul1:
+			dl1Results.setFieldValue(field, value)
+		case ul2:
 			dl2Results.setFieldValue(field, value)
 		}
 	}

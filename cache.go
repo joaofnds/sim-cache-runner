@@ -9,10 +9,12 @@ const (
 	dl2  = "dl2"
 	itlb = "itlb"
 	dtlb = "dtlb"
+	ul1  = "ul1"
+	ul2  = "ul2"
 )
 
 var (
-	configRegexp = regexp.MustCompile(`(il1|il2|dl1|dl2):(\d+):(\d+):(\d):([l|f|r])`)
+	configRegexp = regexp.MustCompile(`(il1|il2|dl1|dl2|ul1|ul2):(\d+):(\d+):(\d):([l|f|r])`)
 )
 
 // <name>:<nsets>:<bsize>:<assoc>:<repl>
